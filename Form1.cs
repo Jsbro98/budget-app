@@ -21,5 +21,13 @@ namespace BudgetApp
         {
             userHistory.Items.Add(entry.Text);
         }
+
+        private void entry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                SubmitButton_Click((object)sender, e);
+            }
+        }
     }
 }
