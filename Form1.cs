@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace BudgetApp
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void HelloButton_Click(object sender, EventArgs e)
+        private void SubmitButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Hello");
+            userHistory.Items.Add(entry.Text);
         }
     }
 }
