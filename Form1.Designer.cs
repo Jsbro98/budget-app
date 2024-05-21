@@ -28,124 +28,214 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.entry = new System.Windows.Forms.TextBox();
-            this.submitButton = new System.Windows.Forms.Button();
-            this.userHistory = new System.Windows.Forms.ListBox();
-            this.entryLabel = new System.Windows.Forms.Label();
-            this.categoryBox = new System.Windows.Forms.GroupBox();
-            this.categoryTextBox = new System.Windows.Forms.TextBox();
-            this.categorySubmit = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.categoryBox.SuspendLayout();
+            this.Entry = new System.Windows.Forms.TextBox();
+            this.ExpenseSubmit = new System.Windows.Forms.Button();
+            this.UserHistory = new System.Windows.Forms.ListBox();
+            this.CategoryBox = new System.Windows.Forms.GroupBox();
+            this.LimitLabel = new System.Windows.Forms.Label();
+            this.BudgetLimit = new System.Windows.Forms.TextBox();
+            this.NameLabel = new System.Windows.Forms.Label();
+            this.CategorySubmit = new System.Windows.Forms.Button();
+            this.CategoryName = new System.Windows.Forms.TextBox();
+            this.CategoryFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this.CategorySelector = new System.Windows.Forms.ListBox();
+            this.ExpenseBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.HistoryLabel = new System.Windows.Forms.Label();
+            this.CategoryBox.SuspendLayout();
+            this.ExpenseBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // Entry
             // 
-            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Controls.Add(this.entry);
-            this.flowLayoutPanel1.Controls.Add(this.submitButton);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 41);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(184, 72);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.Entry.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Entry.Location = new System.Drawing.Point(6, 48);
+            this.Entry.Name = "Entry";
+            this.Entry.Size = new System.Drawing.Size(171, 22);
+            this.Entry.TabIndex = 3;
             // 
-            // entry
+            // ExpenseSubmit
             // 
-            this.entry.AcceptsReturn = true;
-            this.entry.Location = new System.Drawing.Point(3, 3);
-            this.entry.Name = "entry";
-            this.entry.Size = new System.Drawing.Size(171, 22);
-            this.entry.TabIndex = 0;
-            this.entry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.entry_KeyPress);
+            this.ExpenseSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseSubmit.Location = new System.Drawing.Point(0, 128);
+            this.ExpenseSubmit.Name = "ExpenseSubmit";
+            this.ExpenseSubmit.Size = new System.Drawing.Size(75, 23);
+            this.ExpenseSubmit.TabIndex = 5;
+            this.ExpenseSubmit.Text = "Submit";
+            this.ExpenseSubmit.UseVisualStyleBackColor = true;
+            this.ExpenseSubmit.Click += new System.EventHandler(this.EntrySubmit_Click);
             // 
-            // submitButton
+            // UserHistory
             // 
-            this.submitButton.Location = new System.Drawing.Point(3, 31);
-            this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(75, 23);
-            this.submitButton.TabIndex = 1;
-            this.submitButton.Text = "Submit";
-            this.submitButton.UseVisualStyleBackColor = true;
-            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
+            this.UserHistory.FormattingEnabled = true;
+            this.UserHistory.ItemHeight = 16;
+            this.UserHistory.Location = new System.Drawing.Point(232, 34);
+            this.UserHistory.Name = "UserHistory";
+            this.UserHistory.Size = new System.Drawing.Size(120, 340);
+            this.UserHistory.TabIndex = 1;
             // 
-            // userHistory
+            // CategoryBox
             // 
-            this.userHistory.FormattingEnabled = true;
-            this.userHistory.ItemHeight = 16;
-            this.userHistory.Location = new System.Drawing.Point(233, 12);
-            this.userHistory.Name = "userHistory";
-            this.userHistory.Size = new System.Drawing.Size(120, 308);
-            this.userHistory.TabIndex = 1;
+            this.CategoryBox.Controls.Add(this.LimitLabel);
+            this.CategoryBox.Controls.Add(this.BudgetLimit);
+            this.CategoryBox.Controls.Add(this.NameLabel);
+            this.CategoryBox.Controls.Add(this.CategorySubmit);
+            this.CategoryBox.Controls.Add(this.CategoryName);
+            this.CategoryBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryBox.Location = new System.Drawing.Point(12, 12);
+            this.CategoryBox.Name = "CategoryBox";
+            this.CategoryBox.Size = new System.Drawing.Size(184, 170);
+            this.CategoryBox.TabIndex = 3;
+            this.CategoryBox.TabStop = false;
+            this.CategoryBox.Text = "Add a category here";
             // 
-            // entryLabel
+            // LimitLabel
             // 
-            this.entryLabel.AutoSize = true;
-            this.entryLabel.Location = new System.Drawing.Point(9, 12);
-            this.entryLabel.Name = "entryLabel";
-            this.entryLabel.Size = new System.Drawing.Size(167, 16);
-            this.entryLabel.TabIndex = 2;
-            this.entryLabel.Text = "Please enter your expense";
+            this.LimitLabel.AutoSize = true;
+            this.LimitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LimitLabel.Location = new System.Drawing.Point(8, 89);
+            this.LimitLabel.Name = "LimitLabel";
+            this.LimitLabel.Size = new System.Drawing.Size(50, 16);
+            this.LimitLabel.TabIndex = 4;
+            this.LimitLabel.Text = "Budget";
             // 
-            // categoryBox
+            // BudgetLimit
             // 
-            this.categoryBox.Controls.Add(this.categorySubmit);
-            this.categoryBox.Controls.Add(this.categoryTextBox);
-            this.categoryBox.Location = new System.Drawing.Point(12, 161);
-            this.categoryBox.Name = "categoryBox";
-            this.categoryBox.Size = new System.Drawing.Size(184, 100);
-            this.categoryBox.TabIndex = 3;
-            this.categoryBox.TabStop = false;
-            this.categoryBox.Text = "Add a category here";
+            this.BudgetLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BudgetLimit.Location = new System.Drawing.Point(6, 108);
+            this.BudgetLimit.Name = "BudgetLimit";
+            this.BudgetLimit.Size = new System.Drawing.Size(169, 22);
+            this.BudgetLimit.TabIndex = 1;
             // 
-            // categoryTextBox
+            // NameLabel
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(4, 32);
-            this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(169, 22);
-            this.categoryTextBox.TabIndex = 0;
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLabel.Location = new System.Drawing.Point(6, 35);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(44, 16);
+            this.NameLabel.TabIndex = 2;
+            this.NameLabel.Text = "Name";
             // 
-            // categorySubmit
+            // CategorySubmit
             // 
-            this.categorySubmit.Location = new System.Drawing.Point(6, 71);
-            this.categorySubmit.Name = "categorySubmit";
-            this.categorySubmit.Size = new System.Drawing.Size(75, 23);
-            this.categorySubmit.TabIndex = 1;
-            this.categorySubmit.Text = "Submit";
-            this.categorySubmit.UseVisualStyleBackColor = true;
+            this.CategorySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategorySubmit.Location = new System.Drawing.Point(6, 136);
+            this.CategorySubmit.Name = "CategorySubmit";
+            this.CategorySubmit.Size = new System.Drawing.Size(75, 23);
+            this.CategorySubmit.TabIndex = 2;
+            this.CategorySubmit.Text = "Submit";
+            this.CategorySubmit.UseVisualStyleBackColor = true;
+            this.CategorySubmit.Click += new System.EventHandler(this.CategorySubmit_Click);
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryName.Location = new System.Drawing.Point(4, 54);
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.Size = new System.Drawing.Size(169, 22);
+            this.CategoryName.TabIndex = 0;
+            // 
+            // CategoryFlowLayout
+            // 
+            this.CategoryFlowLayout.Location = new System.Drawing.Point(389, 12);
+            this.CategoryFlowLayout.Name = "CategoryFlowLayout";
+            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 356);
+            this.CategoryFlowLayout.TabIndex = 4;
+            // 
+            // CategorySelector
+            // 
+            this.CategorySelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategorySelector.FormattingEnabled = true;
+            this.CategorySelector.ItemHeight = 16;
+            this.CategorySelector.Location = new System.Drawing.Point(6, 102);
+            this.CategorySelector.Name = "CategorySelector";
+            this.CategorySelector.Size = new System.Drawing.Size(120, 20);
+            this.CategorySelector.TabIndex = 4;
+            // 
+            // ExpenseBox
+            // 
+            this.ExpenseBox.Controls.Add(this.label2);
+            this.ExpenseBox.Controls.Add(this.ExpenseSubmit);
+            this.ExpenseBox.Controls.Add(this.label1);
+            this.ExpenseBox.Controls.Add(this.CategorySelector);
+            this.ExpenseBox.Controls.Add(this.Entry);
+            this.ExpenseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseBox.Location = new System.Drawing.Point(12, 217);
+            this.ExpenseBox.Name = "ExpenseBox";
+            this.ExpenseBox.Size = new System.Drawing.Size(184, 157);
+            this.ExpenseBox.TabIndex = 6;
+            this.ExpenseBox.TabStop = false;
+            this.ExpenseBox.Text = "Add an expense";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 16);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Category";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Amount";
+            // 
+            // HistoryLabel
+            // 
+            this.HistoryLabel.AutoSize = true;
+            this.HistoryLabel.Location = new System.Drawing.Point(229, 12);
+            this.HistoryLabel.Name = "HistoryLabel";
+            this.HistoryLabel.Size = new System.Drawing.Size(123, 16);
+            this.HistoryLabel.TabIndex = 7;
+            this.HistoryLabel.Text = "Transaction History";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.categoryBox);
-            this.Controls.Add(this.entryLabel);
-            this.Controls.Add(this.userHistory);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(1067, 395);
+            this.Controls.Add(this.HistoryLabel);
+            this.Controls.Add(this.ExpenseBox);
+            this.Controls.Add(this.CategoryFlowLayout);
+            this.Controls.Add(this.CategoryBox);
+            this.Controls.Add(this.UserHistory);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.categoryBox.ResumeLayout(false);
-            this.categoryBox.PerformLayout();
+            this.Text = "BudgetApp";
+            this.CategoryBox.ResumeLayout(false);
+            this.CategoryBox.PerformLayout();
+            this.ExpenseBox.ResumeLayout(false);
+            this.ExpenseBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox entry;
-        private System.Windows.Forms.Button submitButton;
-        private System.Windows.Forms.ListBox userHistory;
-        private System.Windows.Forms.Label entryLabel;
-        private System.Windows.Forms.GroupBox categoryBox;
-        private System.Windows.Forms.Button categorySubmit;
-        private System.Windows.Forms.TextBox categoryTextBox;
+        private System.Windows.Forms.TextBox Entry;
+        private System.Windows.Forms.Button ExpenseSubmit;
+        private System.Windows.Forms.ListBox UserHistory;
+        private System.Windows.Forms.GroupBox CategoryBox;
+        private System.Windows.Forms.Button CategorySubmit;
+        private System.Windows.Forms.TextBox CategoryName;
+        private System.Windows.Forms.FlowLayoutPanel CategoryFlowLayout;
+        private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.Label LimitLabel;
+        private System.Windows.Forms.TextBox BudgetLimit;
+        private System.Windows.Forms.ListBox CategorySelector;
+        private System.Windows.Forms.GroupBox ExpenseBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HistoryLabel;
     }
 }
 

@@ -17,17 +17,35 @@ namespace BudgetApp
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, EventArgs e)
+        private void EntrySubmit_Click(object sender, EventArgs e)
         {
-            userHistory.Items.Add(entry.Text);
+            UserHistory.Items.Add(Entry.Text);
         }
 
-        private void entry_KeyPress(object sender, KeyPressEventArgs e)
+        private void CategorySubmit_Click(object sender, EventArgs e)
         {
-            if (e.KeyChar == '\r')
+            var category = new FlowLayoutPanel
             {
-                SubmitButton_Click((object)sender, e);
-            }
+                FlowDirection = FlowDirection.TopDown,
+                Size = new Size(100, 100),
+            };
+
+            var label = new Label
+            {
+                Text = CategoryName.Text
+            };
+
+            var progressBar = new ProgressBar
+            {
+                Maximum = int.Parse(BudgetLimit.Text),
+                Visible = true,
+                Size = new Size(60, 25),
+            };
+
+            category.Controls.Add(label);
+            category.Controls.Add(progressBar);
+
+            CategoryFlowLayout.Controls.Add(category);
         }
     }
 }
