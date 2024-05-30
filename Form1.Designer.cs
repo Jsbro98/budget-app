@@ -37,8 +37,8 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.CategorySubmit = new System.Windows.Forms.Button();
             this.CategoryName = new System.Windows.Forms.TextBox();
-            this.CategoryFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
-            this.CategorySelector = new System.Windows.Forms.ListBox();
+            this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
+            this.CategorySelector = new BudgetApp.DropDown();
             this.ExpenseBox = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -107,6 +107,7 @@
             this.BudgetLimit.Name = "BudgetLimit";
             this.BudgetLimit.Size = new System.Drawing.Size(169, 22);
             this.BudgetLimit.TabIndex = 1;
+            this.BudgetLimit.TextChanged += new System.EventHandler(this.BudgetLimit_TextChanged);
             // 
             // NameLabel
             // 
@@ -162,7 +163,7 @@
             this.ExpenseBox.Controls.Add(this.CategorySelector);
             this.ExpenseBox.Controls.Add(this.Entry);
             this.ExpenseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseBox.Location = new System.Drawing.Point(12, 217);
+            this.ExpenseBox.Location = new System.Drawing.Point(12, 226);
             this.ExpenseBox.Name = "ExpenseBox";
             this.ExpenseBox.Size = new System.Drawing.Size(184, 157);
             this.ExpenseBox.TabIndex = 6;
@@ -227,11 +228,11 @@
         private System.Windows.Forms.GroupBox CategoryBox;
         private System.Windows.Forms.Button CategorySubmit;
         private System.Windows.Forms.TextBox CategoryName;
-        private System.Windows.Forms.FlowLayoutPanel CategoryFlowLayout;
+        private CustomFlowPanelEntries CategoryFlowLayout;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label LimitLabel;
         private System.Windows.Forms.TextBox BudgetLimit;
-        private System.Windows.Forms.ListBox CategorySelector;
+        private DropDown CategorySelector;
         private System.Windows.Forms.GroupBox ExpenseBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
