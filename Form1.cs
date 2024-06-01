@@ -13,36 +13,37 @@ namespace BudgetApp
     public partial class MainWindow : Form
     {
         private int _categoryCounter = 0;
+        private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
         {
             InitializeComponent();
 
             // adding \r KeyPress events
             AddEnterSubmitEvent(BudgetLimit, CategorySubmit_Click);
-            AddEnterSubmitEvent(Entry, EntrySubmit_Click);
+            AddEnterSubmitEvent(ExpenseEntry, ExpenseSubmit_Click);
         }
 
-        private void EntrySubmit_Click(object sender, EventArgs e)
+        private void ExpenseSubmit_Click(object sender, EventArgs e)
         {
-            int categorycount = CategorySelector.Categories.Count;
+            int categorycount = Categories.Count;
 
             if (categorycount == 0) { return; }
 
             if (categorycount == 1)
             {
-                CategorySelector.SelectedItem = CategorySelector.Categories.First().Key;
+                CategoryListBox.SelectedItem = Categories.First().Key;
             }
 
-            string categoryName = CategorySelector.SelectedItem.ToString();
-            int amountDeducted = int.Parse(Entry.Text);
+            string categoryName = CategoryListBox.SelectedItem.ToString();
+            int amountDeducted = int.Parse(ExpenseEntry.Text);
             Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
 
 
-            CategorySelector.Categories[categoryName] -= amountDeducted;
+            Categories[categoryName] -= amountDeducted;
 
-            amount.Text = CategorySelector.Categories[categoryName].ToString();
+            amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add(Entry.Text);
+            UserHistory.Items.Add(ExpenseEntry.Text);
         }
 
         private void CategorySubmit_Click(object sender, EventArgs e)
@@ -74,16 +75,53 @@ namespace BudgetApp
             CategoryFlowLayout.Entries.Add(label.Text, category);
         }
 
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (DeleteListBox.SelectedItem is null)
+            {
+                return;
+            }
+            
+            string key = DeleteListBox.SelectedItem.ToString();
+            Control category = CategoryFlowLayout.Entries[key];
 
+            RemoveCategory(key);
+            CategoryFlowLayout.Controls.Remove(category);
+            CategoryFlowLayout.Entries.Remove(key);
+        }
 
+        private void DepositSubmit_Click(object sender, EventArgs e)
+        {
+            // TODO make a method to simplify DepositSubmit and ExpenseSubmit
+
+            string categoryName = DepositListBox.SelectedItem.ToString();
+            int amountDeducted = int.Parse(DepositEntry.Text);
+            Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
+
+            Categories[categoryName] += amountDeducted;
+
+            amount.Text = Categories[categoryName].ToString();
+
+            UserHistory.Items.Add(DepositEntry.Text);
+        }
 
 
         // -----------private methods for helping events-----------
 
         private void AddCategory(string name, int value)
         {
-            CategorySelector.Items.Add(name);
-            CategorySelector.Categories.Add(name, value);
+            Categories.Add(name, value);
+            CategoryListBox.Items.Add(name);
+            DeleteListBox.Items.Add(name);
+            DepositListBox.Items.Add(name);
+        }
+
+        private void RemoveCategory(string name)
+        {
+            Categories.Remove(name);
+            CategoryListBox.Items.Remove(name);
+            DeleteListBox.Items.Remove(name);
+            DepositListBox.Items.Remove(name);
         }
 
         private void AddEnterSubmitEvent(Control component, Action<object, KeyPressEventArgs> callback)

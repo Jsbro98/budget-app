@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Entry = new System.Windows.Forms.TextBox();
+            this.ExpenseEntry = new System.Windows.Forms.TextBox();
             this.ExpenseSubmit = new System.Windows.Forms.Button();
             this.UserHistory = new System.Windows.Forms.ListBox();
             this.CategoryBox = new System.Windows.Forms.GroupBox();
@@ -40,20 +40,32 @@
             this.ExpenseBox = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.CategoryListBox = new System.Windows.Forms.ListBox();
             this.HistoryLabel = new System.Windows.Forms.Label();
-            this.CategorySelector = new BudgetApp.DropDown();
+            this.CategoryDeleteBox = new System.Windows.Forms.GroupBox();
+            this.DeleteListBox = new System.Windows.Forms.ListBox();
+            this.CategoryDeleteLabel = new System.Windows.Forms.Label();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.DepositBox = new System.Windows.Forms.GroupBox();
+            this.DepositListBoxLabel = new System.Windows.Forms.Label();
+            this.DepositListBox = new System.Windows.Forms.ListBox();
+            this.DepositEntry = new System.Windows.Forms.TextBox();
+            this.DepositLabel = new System.Windows.Forms.Label();
+            this.DepositSubmit = new System.Windows.Forms.Button();
             this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
             this.CategoryBox.SuspendLayout();
             this.ExpenseBox.SuspendLayout();
+            this.CategoryDeleteBox.SuspendLayout();
+            this.DepositBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Entry
+            // ExpenseEntry
             // 
-            this.Entry.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Entry.Location = new System.Drawing.Point(6, 48);
-            this.Entry.Name = "Entry";
-            this.Entry.Size = new System.Drawing.Size(171, 22);
-            this.Entry.TabIndex = 3;
+            this.ExpenseEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpenseEntry.Location = new System.Drawing.Point(6, 48);
+            this.ExpenseEntry.Name = "ExpenseEntry";
+            this.ExpenseEntry.Size = new System.Drawing.Size(171, 22);
+            this.ExpenseEntry.TabIndex = 3;
             // 
             // ExpenseSubmit
             // 
@@ -64,15 +76,15 @@
             this.ExpenseSubmit.TabIndex = 5;
             this.ExpenseSubmit.Text = "Submit";
             this.ExpenseSubmit.UseVisualStyleBackColor = true;
-            this.ExpenseSubmit.Click += new System.EventHandler(this.EntrySubmit_Click);
+            this.ExpenseSubmit.Click += new System.EventHandler(this.ExpenseSubmit_Click);
             // 
             // UserHistory
             // 
             this.UserHistory.FormattingEnabled = true;
             this.UserHistory.ItemHeight = 16;
-            this.UserHistory.Location = new System.Drawing.Point(232, 34);
+            this.UserHistory.Location = new System.Drawing.Point(430, 27);
             this.UserHistory.Name = "UserHistory";
-            this.UserHistory.Size = new System.Drawing.Size(120, 340);
+            this.UserHistory.Size = new System.Drawing.Size(138, 356);
             this.UserHistory.TabIndex = 1;
             // 
             // CategoryBox
@@ -88,7 +100,7 @@
             this.CategoryBox.Size = new System.Drawing.Size(184, 170);
             this.CategoryBox.TabIndex = 3;
             this.CategoryBox.TabStop = false;
-            this.CategoryBox.Text = "Add a category here";
+            this.CategoryBox.Text = "Add a category";
             // 
             // LimitLabel
             // 
@@ -142,8 +154,8 @@
             this.ExpenseBox.Controls.Add(this.label2);
             this.ExpenseBox.Controls.Add(this.ExpenseSubmit);
             this.ExpenseBox.Controls.Add(this.label1);
-            this.ExpenseBox.Controls.Add(this.CategorySelector);
-            this.ExpenseBox.Controls.Add(this.Entry);
+            this.ExpenseBox.Controls.Add(this.CategoryListBox);
+            this.ExpenseBox.Controls.Add(this.ExpenseEntry);
             this.ExpenseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExpenseBox.Location = new System.Drawing.Point(12, 226);
             this.ExpenseBox.Name = "ExpenseBox";
@@ -172,37 +184,147 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Amount";
             // 
+            // CategoryListBox
+            // 
+            this.CategoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryListBox.FormattingEnabled = true;
+            this.CategoryListBox.ItemHeight = 16;
+            this.CategoryListBox.Location = new System.Drawing.Point(6, 102);
+            this.CategoryListBox.Name = "CategoryListBox";
+            this.CategoryListBox.Size = new System.Drawing.Size(120, 20);
+            this.CategoryListBox.TabIndex = 4;
+            // 
             // HistoryLabel
             // 
             this.HistoryLabel.AutoSize = true;
-            this.HistoryLabel.Location = new System.Drawing.Point(229, 12);
+            this.HistoryLabel.Location = new System.Drawing.Point(430, 8);
             this.HistoryLabel.Name = "HistoryLabel";
             this.HistoryLabel.Size = new System.Drawing.Size(123, 16);
             this.HistoryLabel.TabIndex = 7;
             this.HistoryLabel.Text = "Transaction History";
             // 
-            // CategorySelector
+            // CategoryDeleteBox
             // 
-            this.CategorySelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategorySelector.FormattingEnabled = true;
-            this.CategorySelector.ItemHeight = 16;
-            this.CategorySelector.Location = new System.Drawing.Point(6, 102);
-            this.CategorySelector.Name = "CategorySelector";
-            this.CategorySelector.Size = new System.Drawing.Size(120, 20);
-            this.CategorySelector.TabIndex = 4;
+            this.CategoryDeleteBox.Controls.Add(this.DeleteListBox);
+            this.CategoryDeleteBox.Controls.Add(this.CategoryDeleteLabel);
+            this.CategoryDeleteBox.Controls.Add(this.DeleteButton);
+            this.CategoryDeleteBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryDeleteBox.Location = new System.Drawing.Point(224, 12);
+            this.CategoryDeleteBox.Name = "CategoryDeleteBox";
+            this.CategoryDeleteBox.Size = new System.Drawing.Size(200, 170);
+            this.CategoryDeleteBox.TabIndex = 8;
+            this.CategoryDeleteBox.TabStop = false;
+            this.CategoryDeleteBox.Text = "Delete a category";
+            // 
+            // DeleteListBox
+            // 
+            this.DeleteListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteListBox.FormattingEnabled = true;
+            this.DeleteListBox.ItemHeight = 16;
+            this.DeleteListBox.Location = new System.Drawing.Point(6, 56);
+            this.DeleteListBox.Name = "DeleteListBox";
+            this.DeleteListBox.Size = new System.Drawing.Size(120, 20);
+            this.DeleteListBox.TabIndex = 5;
+            // 
+            // CategoryDeleteLabel
+            // 
+            this.CategoryDeleteLabel.AutoSize = true;
+            this.CategoryDeleteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryDeleteLabel.Location = new System.Drawing.Point(6, 35);
+            this.CategoryDeleteLabel.Name = "CategoryDeleteLabel";
+            this.CategoryDeleteLabel.Size = new System.Drawing.Size(62, 16);
+            this.CategoryDeleteLabel.TabIndex = 1;
+            this.CategoryDeleteLabel.Text = "Category";
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.Location = new System.Drawing.Point(6, 136);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 0;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // DepositBox
+            // 
+            this.DepositBox.Controls.Add(this.DepositListBoxLabel);
+            this.DepositBox.Controls.Add(this.DepositListBox);
+            this.DepositBox.Controls.Add(this.DepositEntry);
+            this.DepositBox.Controls.Add(this.DepositLabel);
+            this.DepositBox.Controls.Add(this.DepositSubmit);
+            this.DepositBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositBox.Location = new System.Drawing.Point(224, 226);
+            this.DepositBox.Name = "DepositBox";
+            this.DepositBox.Size = new System.Drawing.Size(200, 157);
+            this.DepositBox.TabIndex = 9;
+            this.DepositBox.TabStop = false;
+            this.DepositBox.Text = "Deposit funds";
+            // 
+            // DepositListBoxLabel
+            // 
+            this.DepositListBoxLabel.AutoSize = true;
+            this.DepositListBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositListBoxLabel.Location = new System.Drawing.Point(6, 83);
+            this.DepositListBoxLabel.Name = "DepositListBoxLabel";
+            this.DepositListBoxLabel.Size = new System.Drawing.Size(62, 16);
+            this.DepositListBoxLabel.TabIndex = 5;
+            this.DepositListBoxLabel.Text = "Category";
+            // 
+            // DepositListBox
+            // 
+            this.DepositListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositListBox.FormattingEnabled = true;
+            this.DepositListBox.ItemHeight = 16;
+            this.DepositListBox.Location = new System.Drawing.Point(6, 102);
+            this.DepositListBox.Name = "DepositListBox";
+            this.DepositListBox.Size = new System.Drawing.Size(120, 20);
+            this.DepositListBox.TabIndex = 6;
+            // 
+            // DepositEntry
+            // 
+            this.DepositEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositEntry.Location = new System.Drawing.Point(6, 48);
+            this.DepositEntry.Name = "DepositEntry";
+            this.DepositEntry.Size = new System.Drawing.Size(171, 22);
+            this.DepositEntry.TabIndex = 4;
+            // 
+            // DepositLabel
+            // 
+            this.DepositLabel.AutoSize = true;
+            this.DepositLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositLabel.Location = new System.Drawing.Point(6, 29);
+            this.DepositLabel.Name = "DepositLabel";
+            this.DepositLabel.Size = new System.Drawing.Size(52, 16);
+            this.DepositLabel.TabIndex = 1;
+            this.DepositLabel.Text = "Amount";
+            // 
+            // DepositSubmit
+            // 
+            this.DepositSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DepositSubmit.Location = new System.Drawing.Point(6, 128);
+            this.DepositSubmit.Name = "DepositSubmit";
+            this.DepositSubmit.Size = new System.Drawing.Size(75, 23);
+            this.DepositSubmit.TabIndex = 0;
+            this.DepositSubmit.Text = "Submit";
+            this.DepositSubmit.UseVisualStyleBackColor = true;
+            this.DepositSubmit.Click += new System.EventHandler(this.DepositSubmit_Click);
             // 
             // CategoryFlowLayout
             // 
-            this.CategoryFlowLayout.Location = new System.Drawing.Point(389, 12);
+            this.CategoryFlowLayout.Location = new System.Drawing.Point(574, 12);
             this.CategoryFlowLayout.Name = "CategoryFlowLayout";
-            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 356);
+            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 372);
             this.CategoryFlowLayout.TabIndex = 4;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 395);
+            this.ClientSize = new System.Drawing.Size(1250, 395);
+            this.Controls.Add(this.DepositBox);
+            this.Controls.Add(this.CategoryDeleteBox);
             this.Controls.Add(this.HistoryLabel);
             this.Controls.Add(this.ExpenseBox);
             this.Controls.Add(this.CategoryFlowLayout);
@@ -215,13 +337,17 @@
             this.CategoryBox.PerformLayout();
             this.ExpenseBox.ResumeLayout(false);
             this.ExpenseBox.PerformLayout();
+            this.CategoryDeleteBox.ResumeLayout(false);
+            this.CategoryDeleteBox.PerformLayout();
+            this.DepositBox.ResumeLayout(false);
+            this.DepositBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox Entry;
+        private System.Windows.Forms.TextBox ExpenseEntry;
         private System.Windows.Forms.Button ExpenseSubmit;
         private System.Windows.Forms.ListBox UserHistory;
         private System.Windows.Forms.GroupBox CategoryBox;
@@ -231,11 +357,21 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label LimitLabel;
         private System.Windows.Forms.TextBox BudgetLimit;
-        private DropDown CategorySelector;
+        private System.Windows.Forms.ListBox CategoryListBox;
         private System.Windows.Forms.GroupBox ExpenseBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label HistoryLabel;
+        private System.Windows.Forms.GroupBox CategoryDeleteBox;
+        private System.Windows.Forms.GroupBox DepositBox;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button DepositSubmit;
+        private System.Windows.Forms.ListBox DeleteListBox;
+        private System.Windows.Forms.Label CategoryDeleteLabel;
+        private System.Windows.Forms.TextBox DepositEntry;
+        private System.Windows.Forms.Label DepositLabel;
+        private System.Windows.Forms.Label DepositListBoxLabel;
+        private System.Windows.Forms.ListBox DepositListBox;
     }
 }
 
