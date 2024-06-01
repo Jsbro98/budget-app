@@ -16,6 +16,10 @@ namespace BudgetApp
         public MainWindow()
         {
             InitializeComponent();
+
+            // adding \r KeyPress events
+            AddEnterSubmitEvent(BudgetLimit, CategorySubmit_Click);
+            AddEnterSubmitEvent(Entry, EntrySubmit_Click);
         }
 
         private void EntrySubmit_Click(object sender, EventArgs e)
@@ -46,7 +50,7 @@ namespace BudgetApp
             var category = new CustomLayoutEntry
             {
                 FlowDirection = FlowDirection.TopDown,
-                Size = new Size(65, 60),
+                Size = new Size(75, 60),
             };
 
             var label = new Label
@@ -72,15 +76,27 @@ namespace BudgetApp
 
 
 
+
+
+        // -----------private methods for helping events-----------
+
         private void AddCategory(string name, int value)
         {
             CategorySelector.Items.Add(name);
             CategorySelector.Categories.Add(name, value);
         }
 
-        private void BudgetLimit_TextChanged(object sender, EventArgs e)
+        private void AddEnterSubmitEvent(Control component, Action<object, KeyPressEventArgs> callback)
         {
+            void keyPressEvent(object sender, KeyPressEventArgs e)
+            {
+                if (e.KeyChar == '\r')
+                {
+                    callback(sender, e);
+                }
+            }
 
+            component.KeyPress += new KeyPressEventHandler((Action<object, KeyPressEventArgs>)keyPressEvent);
         }
     }
 }

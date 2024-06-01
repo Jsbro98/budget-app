@@ -37,12 +37,12 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.CategorySubmit = new System.Windows.Forms.Button();
             this.CategoryName = new System.Windows.Forms.TextBox();
-            this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
-            this.CategorySelector = new BudgetApp.DropDown();
             this.ExpenseBox = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.HistoryLabel = new System.Windows.Forms.Label();
+            this.CategorySelector = new BudgetApp.DropDown();
+            this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
             this.CategoryBox.SuspendLayout();
             this.ExpenseBox.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +107,6 @@
             this.BudgetLimit.Name = "BudgetLimit";
             this.BudgetLimit.Size = new System.Drawing.Size(169, 22);
             this.BudgetLimit.TabIndex = 1;
-            this.BudgetLimit.TextChanged += new System.EventHandler(this.BudgetLimit_TextChanged);
             // 
             // NameLabel
             // 
@@ -137,23 +136,6 @@
             this.CategoryName.Name = "CategoryName";
             this.CategoryName.Size = new System.Drawing.Size(169, 22);
             this.CategoryName.TabIndex = 0;
-            // 
-            // CategoryFlowLayout
-            // 
-            this.CategoryFlowLayout.Location = new System.Drawing.Point(389, 12);
-            this.CategoryFlowLayout.Name = "CategoryFlowLayout";
-            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 356);
-            this.CategoryFlowLayout.TabIndex = 4;
-            // 
-            // CategorySelector
-            // 
-            this.CategorySelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategorySelector.FormattingEnabled = true;
-            this.CategorySelector.ItemHeight = 16;
-            this.CategorySelector.Location = new System.Drawing.Point(6, 102);
-            this.CategorySelector.Name = "CategorySelector";
-            this.CategorySelector.Size = new System.Drawing.Size(120, 20);
-            this.CategorySelector.TabIndex = 4;
             // 
             // ExpenseBox
             // 
@@ -198,6 +180,23 @@
             this.HistoryLabel.Size = new System.Drawing.Size(123, 16);
             this.HistoryLabel.TabIndex = 7;
             this.HistoryLabel.Text = "Transaction History";
+            // 
+            // CategorySelector
+            // 
+            this.CategorySelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategorySelector.FormattingEnabled = true;
+            this.CategorySelector.ItemHeight = 16;
+            this.CategorySelector.Location = new System.Drawing.Point(6, 102);
+            this.CategorySelector.Name = "CategorySelector";
+            this.CategorySelector.Size = new System.Drawing.Size(120, 20);
+            this.CategorySelector.TabIndex = 4;
+            // 
+            // CategoryFlowLayout
+            // 
+            this.CategoryFlowLayout.Location = new System.Drawing.Point(389, 12);
+            this.CategoryFlowLayout.Name = "CategoryFlowLayout";
+            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 356);
+            this.CategoryFlowLayout.TabIndex = 4;
             // 
             // MainWindow
             // 
