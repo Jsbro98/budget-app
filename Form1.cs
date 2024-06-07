@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BudgetApp
@@ -34,8 +30,22 @@ namespace BudgetApp
                 CategoryListBox.SelectedItem = Categories.First().Key;
             }
 
+            int amountDeducted;
+
+            try
+            {
+                amountDeducted = int.Parse(ExpenseEntry.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+
+            if (amountDeducted <= 0) { return; }
+
             string categoryName = CategoryListBox.SelectedItem.ToString();
-            int amountDeducted = int.Parse(ExpenseEntry.Text);
             Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
 
 
@@ -43,7 +53,7 @@ namespace BudgetApp
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add(ExpenseEntry.Text);
+            UserHistory.Items.Add($"{categoryName}   -{ExpenseEntry.Text}");
         }
 
         private void CategorySubmit_Click(object sender, EventArgs e)
@@ -69,10 +79,17 @@ namespace BudgetApp
             category.AddedControls.Add(label.Text, label);
             category.AddedControls.Add("Amount", amountLabel);
 
-            AddCategory(label.Text, int.Parse(amountLabel.Text));
-
-            CategoryFlowLayout.Controls.Add(category);
-            CategoryFlowLayout.Entries.Add(label.Text, category);
+            try
+            {
+                AddCategory(label.Text, int.Parse(amountLabel.Text));
+                CategoryFlowLayout.Entries.Add(label.Text, category);
+                CategoryFlowLayout.Controls.Add(category);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -81,7 +98,7 @@ namespace BudgetApp
             {
                 return;
             }
-            
+
             string key = DeleteListBox.SelectedItem.ToString();
             Control category = CategoryFlowLayout.Entries[key];
 
@@ -93,16 +110,27 @@ namespace BudgetApp
         private void DepositSubmit_Click(object sender, EventArgs e)
         {
             // TODO make a method to simplify DepositSubmit and ExpenseSubmit
+            string categoryName;
+            int amountDeducted;
 
-            string categoryName = DepositListBox.SelectedItem.ToString();
-            int amountDeducted = int.Parse(DepositEntry.Text);
+            try
+            {
+                categoryName = DepositListBox.SelectedItem.ToString();
+                amountDeducted = int.Parse(DepositEntry.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
             Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
 
             Categories[categoryName] += amountDeducted;
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add(DepositEntry.Text);
+            UserHistory.Items.Add($"{categoryName}   +{DepositEntry.Text}");
         }
 
 
@@ -110,6 +138,11 @@ namespace BudgetApp
 
         private void AddCategory(string name, int value)
         {
+            if (Categories.ContainsKey(name))
+            {
+                return;
+            }
+
             Categories.Add(name, value);
             CategoryListBox.Items.Add(name);
             DeleteListBox.Items.Add(name);
