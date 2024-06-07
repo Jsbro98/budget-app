@@ -46,6 +46,12 @@ namespace BudgetApp
             if (amountDeducted <= 0) { return; }
 
             string categoryName = CategoryListBox.SelectedItem.ToString();
+
+            if (categoryName.Count() > 20)
+            {
+                return;
+            }
+
             Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
 
 
