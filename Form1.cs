@@ -21,15 +21,6 @@ namespace BudgetApp
 
         private void ExpenseSubmit_Click(object sender, EventArgs e)
         {
-            int categorycount = Categories.Count;
-
-            if (categorycount == 0) { return; }
-
-            if (categorycount == 1)
-            {
-                CategoryListBox.SelectedItem = Categories.First().Key;
-            }
-
             int amountDeducted;
 
             try
@@ -42,12 +33,11 @@ namespace BudgetApp
                 return;
             }
 
-
             if (amountDeducted <= 0) { return; }
 
-            string categoryName = CategoryListBox.SelectedItem.ToString();
+            string categoryName = GetListBoxCategory(CategoryListBox);
 
-            if (categoryName.Count() > 20)
+            if (categoryName is null || categoryName.Count() > 20)
             {
                 return;
             }
@@ -59,7 +49,7 @@ namespace BudgetApp
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add($"{categoryName}   -{ExpenseEntry.Text}");
+            UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
         }
 
         private void CategorySubmit_Click(object sender, EventArgs e)
@@ -96,32 +86,32 @@ namespace BudgetApp
                 Console.WriteLine(ex.Message);
                 return;
             }
+
+            UserHistory.Items.Add($"{label.Text}\tAdded");
+            UserHistory.Items.Add($"With\t{amountLabel.Text}");
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (DeleteListBox.SelectedItem is null)
-            {
-                return;
-            }
+            string key = GetListBoxCategory(DeleteListBox);
 
-            string key = DeleteListBox.SelectedItem.ToString();
+            if (key is null) return;
+
             Control category = CategoryFlowLayout.Entries[key];
 
             RemoveCategory(key);
             CategoryFlowLayout.Controls.Remove(category);
             CategoryFlowLayout.Entries.Remove(key);
+
+            UserHistory.Items.Add($"{key}\tDeleted");
         }
 
         private void DepositSubmit_Click(object sender, EventArgs e)
         {
-            // TODO make a method to simplify DepositSubmit and ExpenseSubmit
-            string categoryName;
             int amountDeducted;
 
             try
             {
-                categoryName = DepositListBox.SelectedItem.ToString();
                 amountDeducted = int.Parse(DepositEntry.Text);
             }
             catch (Exception ex)
@@ -130,13 +120,17 @@ namespace BudgetApp
                 return;
             }
 
+            string categoryName = GetListBoxCategory(DepositListBox);
+
+            if (categoryName is null) return;
+
             Control amount = CategoryFlowLayout.Entries[categoryName].AddedControls["Amount"];
 
             Categories[categoryName] += amountDeducted;
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add($"{categoryName}   +{DepositEntry.Text}");
+            UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}");
         }
 
 
@@ -161,6 +155,34 @@ namespace BudgetApp
             CategoryListBox.Items.Remove(name);
             DeleteListBox.Items.Remove(name);
             DepositListBox.Items.Remove(name);
+        }
+
+        private string GetListBoxCategory(ListBox lb)
+        {
+            if (lb.SelectedItem is null)
+            {
+                switch (lb)
+                {
+                    // using "case var value when value" hack to allow switching
+                    case var value when value == CategoryListBox:
+                        ExpenseToolTip.Show("Please click on a category to allow expense", CategoryListBox, 4500);
+                        break;
+
+                    case var value when value == DeleteListBox:
+                        DeleteToolTip.Show("Please click on a category to allow deletion", DeleteListBox, 4500);
+                        break;
+
+                    case var value when value == DepositListBox:
+                        DepositToolTip.Show("Please click on a category to allow deposit", DepositListBox, 4500);
+                        break;
+                }
+
+                return null;
+            }
+            else
+            {
+                return CategoryListBox.SelectedItem.ToString();
+            }
         }
 
         private void AddEnterSubmitEvent(Control component, Action<object, KeyPressEventArgs> callback)

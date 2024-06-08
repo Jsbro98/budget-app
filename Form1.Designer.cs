@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.ExpenseEntry = new System.Windows.Forms.TextBox();
             this.ExpenseSubmit = new System.Windows.Forms.Button();
             this.UserHistory = new System.Windows.Forms.ListBox();
@@ -52,11 +54,20 @@
             this.DepositEntry = new System.Windows.Forms.TextBox();
             this.DepositLabel = new System.Windows.Forms.Label();
             this.DepositSubmit = new System.Windows.Forms.Button();
+            this.ExpenseToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.CategoryInfoPic = new System.Windows.Forms.PictureBox();
+            this.DepositInfoPic = new System.Windows.Forms.PictureBox();
+            this.DeleteInfoPic = new System.Windows.Forms.PictureBox();
+            this.DepositToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.DeleteToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
             this.CategoryBox.SuspendLayout();
             this.ExpenseBox.SuspendLayout();
             this.CategoryDeleteBox.SuspendLayout();
             this.DepositBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryInfoPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DepositInfoPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteInfoPic)).BeginInit();
             this.SuspendLayout();
             // 
             // ExpenseEntry
@@ -84,6 +95,7 @@
             this.UserHistory.ItemHeight = 16;
             this.UserHistory.Location = new System.Drawing.Point(430, 27);
             this.UserHistory.Name = "UserHistory";
+            this.UserHistory.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.UserHistory.Size = new System.Drawing.Size(138, 356);
             this.UserHistory.TabIndex = 1;
             // 
@@ -151,6 +163,7 @@
             // 
             // ExpenseBox
             // 
+            this.ExpenseBox.Controls.Add(this.CategoryInfoPic);
             this.ExpenseBox.Controls.Add(this.label2);
             this.ExpenseBox.Controls.Add(this.ExpenseSubmit);
             this.ExpenseBox.Controls.Add(this.label1);
@@ -205,6 +218,7 @@
             // 
             // CategoryDeleteBox
             // 
+            this.CategoryDeleteBox.Controls.Add(this.DeleteInfoPic);
             this.CategoryDeleteBox.Controls.Add(this.DeleteListBox);
             this.CategoryDeleteBox.Controls.Add(this.CategoryDeleteLabel);
             this.CategoryDeleteBox.Controls.Add(this.DeleteButton);
@@ -249,6 +263,7 @@
             // 
             // DepositBox
             // 
+            this.DepositBox.Controls.Add(this.DepositInfoPic);
             this.DepositBox.Controls.Add(this.DepositListBoxLabel);
             this.DepositBox.Controls.Add(this.DepositListBox);
             this.DepositBox.Controls.Add(this.DepositEntry);
@@ -311,6 +326,55 @@
             this.DepositSubmit.UseVisualStyleBackColor = true;
             this.DepositSubmit.Click += new System.EventHandler(this.DepositSubmit_Click);
             // 
+            // ExpenseToolTip
+            // 
+            this.ExpenseToolTip.ShowAlways = true;
+            this.ExpenseToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ExpenseToolTip.ToolTipTitle = "Select a category";
+            // 
+            // CategoryInfoPic
+            // 
+            this.CategoryInfoPic.Image = ((System.Drawing.Image)(resources.GetObject("CategoryInfoPic.Image")));
+            this.CategoryInfoPic.Location = new System.Drawing.Point(133, 102);
+            this.CategoryInfoPic.Name = "CategoryInfoPic";
+            this.CategoryInfoPic.Size = new System.Drawing.Size(19, 20);
+            this.CategoryInfoPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CategoryInfoPic.TabIndex = 6;
+            this.CategoryInfoPic.TabStop = false;
+            this.ExpenseToolTip.SetToolTip(this.CategoryInfoPic, "Please click on a category to allow expense");
+            // 
+            // DepositInfoPic
+            // 
+            this.DepositInfoPic.Image = ((System.Drawing.Image)(resources.GetObject("DepositInfoPic.Image")));
+            this.DepositInfoPic.Location = new System.Drawing.Point(132, 102);
+            this.DepositInfoPic.Name = "DepositInfoPic";
+            this.DepositInfoPic.Size = new System.Drawing.Size(19, 20);
+            this.DepositInfoPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DepositInfoPic.TabIndex = 7;
+            this.DepositInfoPic.TabStop = false;
+            this.DepositToolTip.SetToolTip(this.DepositInfoPic, "Please click on a category to allow deposit");
+            // 
+            // DeleteInfoPic
+            // 
+            this.DeleteInfoPic.Image = ((System.Drawing.Image)(resources.GetObject("DeleteInfoPic.Image")));
+            this.DeleteInfoPic.Location = new System.Drawing.Point(132, 56);
+            this.DeleteInfoPic.Name = "DeleteInfoPic";
+            this.DeleteInfoPic.Size = new System.Drawing.Size(19, 20);
+            this.DeleteInfoPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DeleteInfoPic.TabIndex = 7;
+            this.DeleteInfoPic.TabStop = false;
+            this.DeleteToolTip.SetToolTip(this.DeleteInfoPic, "Please click a category allow deletion");
+            // 
+            // DepositToolTip
+            // 
+            this.DepositToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.DepositToolTip.ToolTipTitle = "Select a category";
+            // 
+            // DeleteToolTip
+            // 
+            this.DeleteToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.DeleteToolTip.ToolTipTitle = "Select a category";
+            // 
             // CategoryFlowLayout
             // 
             this.CategoryFlowLayout.Location = new System.Drawing.Point(574, 12);
@@ -341,6 +405,9 @@
             this.CategoryDeleteBox.PerformLayout();
             this.DepositBox.ResumeLayout(false);
             this.DepositBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryInfoPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DepositInfoPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteInfoPic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,6 +439,12 @@
         private System.Windows.Forms.Label DepositLabel;
         private System.Windows.Forms.Label DepositListBoxLabel;
         private System.Windows.Forms.ListBox DepositListBox;
+        private System.Windows.Forms.ToolTip ExpenseToolTip;
+        private System.Windows.Forms.PictureBox CategoryInfoPic;
+        private System.Windows.Forms.PictureBox DeleteInfoPic;
+        private System.Windows.Forms.PictureBox DepositInfoPic;
+        private System.Windows.Forms.ToolTip DepositToolTip;
+        private System.Windows.Forms.ToolTip DeleteToolTip;
     }
 }
 
