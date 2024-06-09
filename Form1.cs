@@ -8,7 +8,10 @@ namespace BudgetApp
 {
     public partial class MainWindow : Form
     {
-        private int _categoryCounter = 0;
+        // TODO add method to log to UserHistory
+        // TODO add functionality to undo button
+        // TODO add limit to categories
+
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
         {
@@ -49,7 +52,18 @@ namespace BudgetApp
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
+            // check if description is entered, if so, add it to UserHistory
+            if (!string.IsNullOrEmpty(ExpenseDescription.Text))
+            {
+                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
+                UserHistory.Items.Add($"Description: {ExpenseDescription.Text}");
+                UserHistory.Items.Add("");
+            }
+            else
+            {
+                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
+                UserHistory.Items.Add("");
+            }
         }
 
         private void CategorySubmit_Click(object sender, EventArgs e)
@@ -87,8 +101,8 @@ namespace BudgetApp
                 return;
             }
 
-            UserHistory.Items.Add($"{label.Text}\tAdded");
-            UserHistory.Items.Add($"With\t{amountLabel.Text}");
+            UserHistory.Items.Add($"{label.Text} Added With\t{amountLabel.Text}");
+            UserHistory.Items.Add("");
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -104,6 +118,7 @@ namespace BudgetApp
             CategoryFlowLayout.Entries.Remove(key);
 
             UserHistory.Items.Add($"{key}\tDeleted");
+            UserHistory.Items.Add("");
         }
 
         private void DepositSubmit_Click(object sender, EventArgs e)
@@ -130,7 +145,16 @@ namespace BudgetApp
 
             amount.Text = Categories[categoryName].ToString();
 
-            UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}");
+            // check if description is entered, if so, add it to UserHistory
+            if (!string.IsNullOrEmpty(DepositDescription.Text))
+            {
+                UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}");
+                UserHistory.Items.Add($"Description: {DepositDescription.Text}\n");
+            }
+            else
+            {
+                UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}\n");
+            }
         }
 
 
@@ -181,7 +205,7 @@ namespace BudgetApp
             }
             else
             {
-                return CategoryListBox.SelectedItem.ToString();
+                return lb.SelectedItem.ToString();
             }
         }
 
