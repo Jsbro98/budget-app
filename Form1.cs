@@ -11,6 +11,7 @@ namespace BudgetApp
         // TODO add method to log to UserHistory
         // TODO add functionality to undo button
         // TODO add limit to categories
+        // TODO add functionality for hitting \r moves to the next control
 
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
