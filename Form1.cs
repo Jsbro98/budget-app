@@ -69,6 +69,8 @@ namespace BudgetApp
 
         private void CategorySubmit_Click(object sender, EventArgs e)
         {
+            if (Categories.Count == 30) return;
+
             var category = new CustomLayoutEntry
             {
                 FlowDirection = FlowDirection.TopDown,
