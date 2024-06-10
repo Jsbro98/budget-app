@@ -67,6 +67,7 @@
             this.DepositToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DeleteToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
+            this.CategoryUndo = new System.Windows.Forms.Button();
             this.CategoryBox.SuspendLayout();
             this.ExpenseBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryInfoPic)).BeginInit();
@@ -107,6 +108,7 @@
             // 
             // CategoryBox
             // 
+            this.CategoryBox.Controls.Add(this.CategoryUndo);
             this.CategoryBox.Controls.Add(this.LimitLabel);
             this.CategoryBox.Controls.Add(this.BudgetLimit);
             this.CategoryBox.Controls.Add(this.NameLabel);
@@ -189,12 +191,13 @@
             // ExpenseUndo
             // 
             this.ExpenseUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExpenseUndo.Location = new System.Drawing.Point(81, 166);
+            this.ExpenseUndo.Location = new System.Drawing.Point(87, 166);
             this.ExpenseUndo.Name = "ExpenseUndo";
             this.ExpenseUndo.Size = new System.Drawing.Size(75, 23);
             this.ExpenseUndo.TabIndex = 8;
             this.ExpenseUndo.Text = "Undo";
             this.ExpenseUndo.UseVisualStyleBackColor = true;
+            this.ExpenseUndo.Click += new System.EventHandler(this.ExpenseUndo_Click);
             // 
             // ExpenseDescriptionLabel
             // 
@@ -450,6 +453,17 @@
             this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 372);
             this.CategoryFlowLayout.TabIndex = 4;
             // 
+            // CategoryUndo
+            // 
+            this.CategoryUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryUndo.Location = new System.Drawing.Point(87, 136);
+            this.CategoryUndo.Name = "CategoryUndo";
+            this.CategoryUndo.Size = new System.Drawing.Size(75, 23);
+            this.CategoryUndo.TabIndex = 9;
+            this.CategoryUndo.Text = "Undo";
+            this.CategoryUndo.UseVisualStyleBackColor = true;
+            this.CategoryUndo.Click += new System.EventHandler(this.CategoryUndo_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -519,6 +533,7 @@
         private System.Windows.Forms.TextBox DepositDescription;
         private System.Windows.Forms.Button ExpenseUndo;
         private System.Windows.Forms.Button DepositUndo;
+        private System.Windows.Forms.Button CategoryUndo;
     }
 }
 

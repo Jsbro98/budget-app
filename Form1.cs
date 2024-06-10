@@ -10,8 +10,9 @@ namespace BudgetApp
     {
         // TODO add method to log to UserHistory
         // TODO add functionality to undo button
-        // TODO add limit to categories
         // TODO add functionality for hitting \r moves to the next control
+
+        
 
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
@@ -160,8 +161,44 @@ namespace BudgetApp
             }
         }
 
+        private void ExpenseUndo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CategoryUndo_Click(object sender, EventArgs e)
+        {
+            UndoCategory(CategoryListBox);
+        }
+
+
 
         // -----------private methods for helping events-----------
+
+
+        private void UndoCategory(ListBox lb)
+        {
+            // continue here
+            lb.SelectedItem = lb.Items[lb.Items.Count - 1];
+
+            string key = GetListBoxCategory(lb);
+
+            if (key is null) return;
+
+            CustomLayoutEntry category = CategoryFlowLayout.Entries[key];
+
+            RemoveCategory(key);
+            CategoryFlowLayout.Controls.Remove(category);
+            CategoryFlowLayout.Entries.Remove(key);
+
+            Console.WriteLine($"Count: {UserHistory.Items.Count}");
+            Console.WriteLine($"Count - 1: \"{UserHistory.Items[UserHistory.Items.Count - 1]}\"");
+
+            for (int i = UserHistory.Items.Count - 1; i > UserHistory.Items.Count - 3; i--)
+            {
+                UserHistory.Items.Remove(UserHistory.Items[i]);
+            }
+        }
 
         private void AddCategory(string name, int value)
         {
