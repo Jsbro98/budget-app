@@ -67,8 +67,8 @@
             this.ExpenseToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DepositToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DeleteToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
             this.DeleteUndo = new System.Windows.Forms.Button();
+            this.CategoryFlowLayout = new BudgetApp.CustomFlowPanelEntries();
             this.CategoryBox.SuspendLayout();
             this.ExpenseBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CategoryInfoPic)).BeginInit();
@@ -459,13 +459,6 @@
             this.DeleteToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.DeleteToolTip.ToolTipTitle = "Select a category";
             // 
-            // CategoryFlowLayout
-            // 
-            this.CategoryFlowLayout.Location = new System.Drawing.Point(697, 12);
-            this.CategoryFlowLayout.Name = "CategoryFlowLayout";
-            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 372);
-            this.CategoryFlowLayout.TabIndex = 4;
-            // 
             // DeleteUndo
             // 
             this.DeleteUndo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -475,6 +468,13 @@
             this.DeleteUndo.TabIndex = 10;
             this.DeleteUndo.Text = "Undo";
             this.DeleteUndo.UseVisualStyleBackColor = true;
+            // 
+            // CategoryFlowLayout
+            // 
+            this.CategoryFlowLayout.Location = new System.Drawing.Point(697, 12);
+            this.CategoryFlowLayout.Name = "CategoryFlowLayout";
+            this.CategoryFlowLayout.Size = new System.Drawing.Size(666, 372);
+            this.CategoryFlowLayout.TabIndex = 4;
             // 
             // MainWindow
             // 
@@ -490,7 +490,7 @@
             this.Controls.Add(this.UserHistory);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainWindow";
-            this.Text = "BudgetApp";
+            this.Text = "Budget Tracker";
             this.CategoryBox.ResumeLayout(false);
             this.CategoryBox.PerformLayout();
             this.ExpenseBox.ResumeLayout(false);
