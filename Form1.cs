@@ -8,20 +8,16 @@ namespace BudgetApp
 {
     public partial class MainWindow : Form
     {
-        // TODO add method to log to UserHistory
-        // TODO add functionality to undo button
-        // TODO add functionality for hitting \r moves to the next control
-
+        // TODO create LogManager class to handle all logging to UserHistory
+        // TODO add functionality to delete, deposit, and expense buttons
+        //  - possibly create undo class to handle this ^^
         
 
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
         {
             InitializeComponent();
-
-            // adding \r KeyPress events
-            AddEnterSubmitEvent(BudgetLimit, CategorySubmit_Click);
-            AddEnterSubmitEvent(ExpenseEntry, ExpenseSubmit_Click);
+            AddAllTabEvents();
         }
 
         private void ExpenseSubmit_Click(object sender, EventArgs e)
@@ -54,18 +50,7 @@ namespace BudgetApp
 
             amount.Text = Categories[categoryName].ToString();
 
-            // check if description is entered, if so, add it to UserHistory
-            if (!string.IsNullOrEmpty(ExpenseDescription.Text))
-            {
-                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
-                UserHistory.Items.Add($"Description: {ExpenseDescription.Text}");
-                UserHistory.Items.Add("");
-            }
-            else
-            {
-                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
-                UserHistory.Items.Add("");
-            }
+            LogExpense(categoryName);
         }
 
         private void CategorySubmit_Click(object sender, EventArgs e)
@@ -138,10 +123,12 @@ namespace BudgetApp
             {
                 UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}");
                 UserHistory.Items.Add($"Description: {DepositDescription.Text}\n");
+                UserHistory.Items.Add("");
             }
             else
             {
                 UserHistory.Items.Add($"{categoryName}\t+{DepositEntry.Text}\n");
+                UserHistory.Items.Add("");
             }
         }
 
@@ -158,6 +145,22 @@ namespace BudgetApp
 
 
         // -----------private methods for helping events-----------
+
+        private void LogExpense(string categoryName)
+        {
+            // check if description is entered, if so, add it to UserHistory
+            if (!string.IsNullOrEmpty(ExpenseDescription.Text))
+            {
+                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
+                UserHistory.Items.Add($"Description: {ExpenseDescription.Text}");
+                UserHistory.Items.Add("");
+            }
+            else
+            {
+                UserHistory.Items.Add($"{categoryName}\t-{ExpenseEntry.Text}");
+                UserHistory.Items.Add("");
+            }
+        }
 
         private CustomLayoutEntry CreateCategory()
         {
@@ -261,17 +264,35 @@ namespace BudgetApp
             }
         }
 
-        private void AddEnterSubmitEvent(Control component, Action<object, KeyPressEventArgs> callback)
+        private void AddEnterTabEvent(Control component)
         {
             void keyPressEvent(object sender, KeyPressEventArgs e)
             {
                 if (e.KeyChar == '\r')
                 {
-                    callback(sender, e);
+                    Console.WriteLine(SelectNextControl((Control)sender, true, true, true, true));
                 }
             }
 
             component.KeyPress += new KeyPressEventHandler((Action<object, KeyPressEventArgs>)keyPressEvent);
         }
+
+        private void AddAllTabEvents()
+        {
+            Control[] controls = new Control[] {
+                CategoryName,
+                BudgetLimit,
+                ExpenseEntry,
+                ExpenseDescription,
+                DepositEntry,
+                DepositDescription,
+            };
+
+            foreach (Control control in controls)
+            {
+                AddEnterTabEvent(control);
+            }
+        }
+
     }
 }
