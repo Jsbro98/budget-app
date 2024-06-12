@@ -72,31 +72,15 @@ namespace BudgetApp
         {
             if (Categories.Count == 30) return;
 
-            var category = new CustomLayoutEntry
-            {
-                FlowDirection = FlowDirection.TopDown,
-                Size = new Size(75, 60),
-            };
+            CustomLayoutEntry category = CreateCategory();
 
-            var label = new Label
-            {
-                Text = CategoryName.Text,
-            };
-
-            var amountLabel = new Label
-            {
-                Text = BudgetLimit.Text,
-            };
-
-            category.Controls.Add(label);
-            category.Controls.Add(amountLabel);
-            category.AddedControls.Add(label.Text, label);
-            category.AddedControls.Add("Amount", amountLabel);
+            string labelText = CategoryName.Text;
+            string amount = BudgetLimit.Text;
 
             try
             {
-                AddCategory(label.Text, int.Parse(amountLabel.Text));
-                CategoryFlowLayout.Entries.Add(label.Text, category);
+                AddCategory(labelText, int.Parse(amount));
+                CategoryFlowLayout.Entries.Add(labelText, category);
                 CategoryFlowLayout.Controls.Add(category);
             }
             catch (Exception ex)
@@ -105,7 +89,7 @@ namespace BudgetApp
                 return;
             }
 
-            UserHistory.Items.Add($"{label.Text} Added With\t{amountLabel.Text}");
+            UserHistory.Items.Add($"{labelText} Added With\t{amount}");
             UserHistory.Items.Add("");
         }
 
@@ -175,15 +159,47 @@ namespace BudgetApp
 
         // -----------private methods for helping events-----------
 
+        private CustomLayoutEntry CreateCategory()
+        {
+            var category = new CustomLayoutEntry
+            {
+                FlowDirection = FlowDirection.TopDown,
+                Size = new Size(75, 60),
+            };
+
+            var label = new Label
+            {
+                Text = CategoryName.Text,
+            };
+
+            var amountLabel = new Label
+            {
+                Text = BudgetLimit.Text,
+            };
+
+            category.Controls.Add(label);
+            category.Controls.Add(amountLabel);
+            category.AddedControls.Add(label.Text, label);
+            category.AddedControls.Add("Amount", amountLabel);
+
+            return category;
+        }
 
         private void UndoCategory(ListBox lb)
         {
-            // continue here
-            lb.SelectedItem = lb.Items[lb.Items.Count - 1];
+            try
+            {
+                lb.SelectedItem = lb.Items[lb.Items.Count - 1];
+                Console.WriteLine($"Selected Item: {lb.SelectedItem}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
 
-            string key = GetListBoxCategory(lb);
-
-            if (key is null) return;
+            string key = lb.SelectedItem.ToString();
+            int index = UserHistory.Items.Count - 1;
 
             CustomLayoutEntry category = CategoryFlowLayout.Entries[key];
 
@@ -191,13 +207,9 @@ namespace BudgetApp
             CategoryFlowLayout.Controls.Remove(category);
             CategoryFlowLayout.Entries.Remove(key);
 
-            Console.WriteLine($"Count: {UserHistory.Items.Count}");
-            Console.WriteLine($"Count - 1: \"{UserHistory.Items[UserHistory.Items.Count - 1]}\"");
-
-            for (int i = UserHistory.Items.Count - 1; i > UserHistory.Items.Count - 3; i--)
-            {
-                UserHistory.Items.Remove(UserHistory.Items[i]);
-            }
+            // remove the transaction and the whitespace
+            UserHistory.Items.RemoveAt(index);
+            UserHistory.Items.RemoveAt(index - 1);
         }
 
         private void AddCategory(string name, int value)
