@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoggingManager.cs" />
     <Compile Include="CustomLayoutEntry.cs">
       <SubType>Component</SubType>
     </Compile>

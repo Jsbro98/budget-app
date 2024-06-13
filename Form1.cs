@@ -15,8 +15,8 @@ namespace BudgetApp
         /* TODO on window close, upload all transaction history
          * for the session into a .txt file
          */
-        
 
+        
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
         {
