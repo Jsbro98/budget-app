@@ -9,14 +9,14 @@ namespace BudgetApp
     public partial class MainWindow : Form
     {
         // TODO create LogManager class to handle all logging to UserHistory
-        // TODO add functionality to delete, deposit, and expense buttons
+        // TODO add functionality to delete, deposit, and expense undo buttons
         //  - possibly create undo class to handle this ^^
         // TODO create functionality to save categories
         /* TODO on window close, upload all transaction history
          * for the session into a .txt file
          */
 
-        
+
         private readonly Dictionary<string, int> Categories = new Dictionary<string, int>();
         public MainWindow()
         {
