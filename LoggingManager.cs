@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BudgetApp
 {
-    internal class LoggingManager
+    public class LoggingManager
     {
         
     }
